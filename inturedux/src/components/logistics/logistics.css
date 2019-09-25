@@ -1,0 +1,25 @@
+.table-dashboard {
+  width: 100%;
+}
+.table-dashboard thead {
+  color: #7f8082;
+  font-size: 0.6em;
+  font-weight: 600;
+  padding: 7px;
+  vertical-align: top;
+}
+.table-dashboard tbody tr {
+  box-shadow: inset 0 0 1px 6px #d7d8da;
+  font-size: 0.9em;
+  font-weight: 600;
+  border: 10px solid white;
+  transition: 0.3s all;
+}
+.table-dashboard tbody tr td {
+  padding: 1.4em 1.3em;
+  font-size: 0.7em;
+  cursor: pointer;
+}
+.table-dashboard tbody tr:hover{
+  background: #d5deff;
+}
