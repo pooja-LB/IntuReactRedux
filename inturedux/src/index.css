@@ -41,19 +41,22 @@ h6 {
   width: 27em;
   min-width: 19em;
   margin-bottom: 1em;
+  width: 30em;
 }
 .tabular-data {
   order: 2;
   border: 2px solid #d5deff;
   padding: 0.6em;
   min-width: 19em;
+  width: 60em;
+  min-height: 30em;
 }
 .inner-tabular {
   max-height: 30em;
   overflow-y: auto;
   overflow-x: auto;
 }
-.greened{
+.greened {
   color: #76d218;
   font-size: 0.9em;
   font-weight: 800;
