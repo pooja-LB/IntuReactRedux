@@ -10,23 +10,39 @@ import { renderTimelineData } from '../../store/logs/action'
 class Logistics extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            activeIndex: ''
+
+        }
     }
     renderTableValues = () => {
         let self = this;
         const { tabledata, data, renderTimelineData, timelinedata } = self.props;
-        if (!data) return [];
+        const { activeIndex } = self.state;
+        // if (!data) return [];
         let statusval = data.filter((item) => {
             return item.current_status_code == tabledata
         })
-        console.log(statusval, "statusvalintable")
-        console.log(timelinedata, "timelinedata")
+        console.log(tabledata, "statusvalintable")
+        console.log(activeIndex, "activeIndex")
 
         return (
-            statusval.map((item, index ) => {
-                return <tr key={index} onClick={e => {
-                    console.log(item, "item")
-                    renderTimelineData(item.scan)
-                }} className={item == timelinedata ? "rowbackground" : "" }>
+
+            // data.filter((item) => {
+            //     return item.current_status_code == tabledata
+            // })
+            statusval.map((item, index) => {
+                return <tr key={index}
+                    onClick={e => {
+                        console.log(activeIndex, "setSta")
+                        this.setState({
+                            activeIndex: index
+                        })
+                        console.log(activeIndex, "activeIndex")
+                        renderTimelineData(item.scan)
+                    }}
+                    className={(activeIndex == index) ? "rowbackground" : ""}
+                >
                     <td>#{item.awbno}</td>
                     <td>{item.carrier}</td>
                     <td>{item.from}</td>
@@ -34,9 +50,10 @@ class Logistics extends Component {
                     <td>USPA</td>
                     <td>{item.pickup_date}</td>
                     <td>{item.time}</td>
-                    <td>{item.current_status}</td>
+                    <td className={(item.current_status == "Delivered") ? " greened " : ""}>{item.current_status}</td>
                 </tr>
             })
+
 
         )
     }

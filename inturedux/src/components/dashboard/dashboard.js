@@ -2,11 +2,14 @@
 import React, { Component } from "react";
 import './dashboard.css'
 import { connect } from 'react-redux';
-import { renderTableData} from '../../store/logs/action'
+import { renderTableData } from '../../store/logs/action'
 
 class Dashboard extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            activeItem: 'DEL'
+        }
     }
     renderlength = (type) => {
         let self = this;
@@ -15,7 +18,7 @@ class Dashboard extends Component {
         if (!data) return [];
         console.log(data, "nulldata")
         let result = data.filter((item) => {
-           return item.current_status_code == type
+            return item.current_status_code == type
         }).length
         return result
     }
@@ -23,17 +26,22 @@ class Dashboard extends Component {
     render() {
         let self = this;
         const status = ["DEL", "INT", "OOD", "DEX", "NFI"];
-        const { renderTableData, updatedStatus} = self.props;
-        renderTableData('DEL')
-        console.log(renderTableData.payload, "dataindashboad")
-        console.log(updatedStatus, "updatedStatus")
+        const { renderTableData } = self.props;
+    //   if  renderTableData('DEL')
 
         return (
             status.map((statusvalue) => {
                 return (
-                    <div className={"dash-card " + ((statusvalue) ? "active-status" : "")} onClick={e => {
-                        renderTableData(statusvalue)
-                    }}  >
+                    <div                       
+                        onClick={e => {
+                            console.log("asaS", statusvalue)
+                            renderTableData(statusvalue)
+                            this.setState({
+                                activeItem: statusvalue
+                            })
+                            
+                        }} 
+                        className={(this.state.activeItem === statusvalue) ? "dash-card active-status" : "dash-card"} >
                         <p>{statusvalue}</p>
                         <h4>{this.renderlength(statusvalue)}</h4>
                     </div>

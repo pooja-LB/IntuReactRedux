@@ -19,8 +19,8 @@ class Timeline extends Component {
             timelinedata.map((item, index) => {
                 console.log(item, "itemmap")
                 return (
-                    <li key={index} className="timeline-list" >
-                        <div className="col-md-8 clearfix">
+                    <li key={index} className={"timeline-list " + ((item.status_detail == 'DELIVERED') ? " active-blue" : "")} >
+                        <div className={" col-md-8 clearfix " +( (item.status_detail == 'DELIVERED') ? " greened " : "")}>
                             {item.status_detail}
                         </div>
                         <div className="col-md-4 clearfix">

@@ -3,7 +3,11 @@ import {tablistReducer} from './logs/index';
 
 
 const initialState = {
-    list: ''
+    list: {
+        tabledata :"DEL",
+        data :[]
+    }
+    // list: tablistReducer
 }
 
 
